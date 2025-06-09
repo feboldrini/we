@@ -40,29 +40,26 @@ const flashcards = [
 function generateFlashcards() {
     const flashcardsContainer = document.getElementById('flashcards');
     
-    flashcards.forEach((card, index) => {
+    flashcards.forEach((card) => {
         const flashcardDiv = document.createElement('div');
         flashcardDiv.classList.add('flashcard');
         
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
-        questionDiv.innerHTML = `<h3>${card.question}</h3>`;
+        const cardInner = document.createElement('div');
+        cardInner.classList.add('card-inner');
         
-        const answerDiv = document.createElement('div');
-        answerDiv.classList.add('answer');
-        answerDiv.style.display = 'none';
-        answerDiv.innerHTML = `<p>${card.answer}</p>`;
+        // Frente do flashcard (pergunta)
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+        cardFront.innerHTML = `<h3>${card.question}</h3>`;
         
-        const button = document.createElement('button');
-        button.innerHTML = "Mostrar Resposta";
-        button.onclick = () => {
-            answerDiv.style.display = 'block';
-            button.style.display = 'none'; // Oculta o botão após exibir a resposta
-        };
+        // Verso do flashcard (resposta)
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        cardBack.innerHTML = `<p>${card.answer}</p>`;
         
-        flashcardDiv.appendChild(questionDiv);
-        flashcardDiv.appendChild(answerDiv);
-        flashcardDiv.appendChild(button);
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        flashcardDiv.appendChild(cardInner);
         flashcardsContainer.appendChild(flashcardDiv);
     });
 }

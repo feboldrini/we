@@ -27,23 +27,45 @@ body {
 }
 
 .flashcard {
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     width: 200px;
     height: 150px;
+    perspective: 1000px; /* Dá a sensação de profundidade ao virar o card */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* Permite a rotação em 3D */
+}
+
+.flashcard:hover .card-inner {
+    transform: rotateY(180deg); /* Rotaciona o flashcard ao passar o mouse */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde a parte de trás quando virada */
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
 }
 
-.flashcard:hover {
-    transform: scale(1.05);
+.card-front {
+    background-color: #fff;
+}
+
+.card-back {
+    background-color: #f8f8f8;
+    transform: rotateY(180deg); /* Coloca a parte de trás virada */
 }
 
 h3 {
@@ -51,18 +73,7 @@ h3 {
     color: #333;
 }
 
-button {
-    padding: 8px 15px;
+p {
     font-size: 1rem;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #45a049;
+    color: #333;
 }
