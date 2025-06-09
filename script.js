@@ -1,49 +1,71 @@
 const flashcards = [
     {
-        question: "Qual é a capital do Brasil?",
-        answer: "Brasília"
+        question: "Qual é a fórmula de Bhaskara?",
+        answer: "x = (-b ± √(b² - 4ac)) / 2a"
     },
     {
-        question: "Quem escreveu 'Dom Casmurro'?",
-        answer: "Machado de Assis"
+        question: "O que é um número primo?",
+        answer: "É um número maior que 1, que só tem dois divisores: 1 e ele mesmo."
     },
     {
-        question: "Qual é o maior planeta do Sistema Solar?",
-        answer: "Júpiter"
+        question: "Qual é a fórmula da área de um triângulo?",
+        answer: "Área = (base * altura) / 2"
     },
     {
-        question: "Quem pintou a Mona Lisa?",
-        answer: "Leonardo da Vinci"
+        question: "Qual é a soma dos ângulos internos de um triângulo?",
+        answer: "180°"
     },
     {
-        question: "Qual é a fórmula da água?",
-        answer: "H2O"
+        question: "Qual é a fórmula da equação de uma reta?",
+        answer: "y = mx + b, onde m é o coeficiente angular e b é o coeficiente linear."
+    },
+    {
+        question: "Como se calcula a média de um conjunto de números?",
+        answer: "Média = (Soma de todos os números) / (Quantidade de números)"
+    },
+    {
+        question: "O que é uma progressão aritmética (PA)?",
+        answer: "É uma sequência de números em que a diferença entre termos consecutivos é constante."
+    },
+    {
+        question: "O que é a fórmula da distância no movimento uniforme?",
+        answer: "d = v * t, onde d é a distância, v é a velocidade e t é o tempo."
+    },
+    {
+        question: "Como calcula-se a área de um círculo?",
+        answer: "Área = π * r², onde r é o raio do círculo."
     }
 ];
 
-let currentIndex = 0;
-
-function showQuestion() {
-    const questionElement = document.getElementById('question');
-    const answerElement = document.getElementById('answer');
+function generateFlashcards() {
+    const flashcardsContainer = document.getElementById('flashcards');
     
-    questionElement.innerHTML = flashcards[currentIndex].question;
-    answerElement.innerHTML = flashcards[currentIndex].answer;
-    
-    // Esconde a resposta inicialmente
-    answerElement.style.display = 'none';
+    flashcards.forEach((card, index) => {
+        const flashcardDiv = document.createElement('div');
+        flashcardDiv.classList.add('flashcard');
+        
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+        questionDiv.innerHTML = `<h3>${card.question}</h3>`;
+        
+        const answerDiv = document.createElement('div');
+        answerDiv.classList.add('answer');
+        answerDiv.style.display = 'none';
+        answerDiv.innerHTML = `<p>${card.answer}</p>`;
+        
+        const button = document.createElement('button');
+        button.innerHTML = "Mostrar Resposta";
+        button.onclick = () => {
+            answerDiv.style.display = 'block';
+            button.style.display = 'none'; // Oculta o botão após exibir a resposta
+        };
+        
+        flashcardDiv.appendChild(questionDiv);
+        flashcardDiv.appendChild(answerDiv);
+        flashcardDiv.appendChild(button);
+        flashcardsContainer.appendChild(flashcardDiv);
+    });
 }
 
-function showAnswer() {
-    const answerElement = document.getElementById('answer');
-    answerElement.style.display = 'block';
-}
-
-function nextFlashcard() {
-    currentIndex = (currentIndex + 1) % flashcards.length;
-    showQuestion();
-}
-
-document.getElementById('flashcard').addEventListener('click', showAnswer);
-
-showQuestion();
+// Gera os flashcards ao carregar a página
+generateFlashcards();
