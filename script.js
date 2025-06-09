@@ -1,5 +1,9 @@
 const flashcards = [
     {
+        question: "Qual é a fórmula de Pitágoras?",
+        answer: "a² + b² = c², onde a e b são os catetos e c é a hipotenusa."
+    },
+    {
         question: "Qual é a fórmula de Bhaskara?",
         answer: "x = (-b ± √(b² - 4ac)) / 2a"
     },
@@ -28,10 +32,6 @@ const flashcards = [
         answer: "É uma sequência de números em que a diferença entre termos consecutivos é constante."
     },
     {
-        question: "O que é a fórmula da distância no movimento uniforme?",
-        answer: "d = v * t, onde d é a distância, v é a velocidade e t é o tempo."
-    },
-    {
         question: "Como calcula-se a área de um círculo?",
         answer: "Área = π * r², onde r é o raio do círculo."
     }
@@ -56,6 +56,11 @@ function generateFlashcards() {
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
         cardBack.innerHTML = `<p>${card.answer}</p>`;
+        
+        // Evento de clique para virar o flashcard
+        flashcardDiv.onclick = function() {
+            cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)';
+        };
         
         cardInner.appendChild(cardFront);
         cardInner.appendChild(cardBack);
