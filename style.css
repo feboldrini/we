@@ -40,10 +40,6 @@ body {
     transform-style: preserve-3d; /* Permite a rotação em 3D */
 }
 
-.flashcard:hover .card-inner {
-    transform: rotateY(180deg); /* Rotaciona o flashcard ao passar o mouse */
-}
-
 .card-front,
 .card-back {
     position: absolute;
